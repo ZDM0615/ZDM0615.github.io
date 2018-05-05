@@ -1,0 +1,146 @@
+function myMove() 
+{
+  var elemBluefish = document.getElementById("bluefish");
+  var elemBluefishWin = document.getElementById("bluefishwin");
+  var elemTurtle = document.getElementById("turtle");
+  var elemTurtleWin = document.getElementById("turtlewin");
+  
+  var posBluefish = 0;
+  var posTurtle = 0;
+
+  var hasWinner = false;
+  elemBluefishWin.style.display = 'none';
+  elemTurtleWin.style.display = 'none';
+  
+  var id = setInterval(frame, 5);
+  function frame()
+  {
+    if(posBluefish >= 350 && posTurtle >= 350)
+    {
+      clearInterval(id);
+      return;
+    }
+
+    if(posBluefish < 350)
+    {
+      posBluefish += Math.round(Math.random()*10);
+      if(posBluefish >= 350)
+      {
+        posBluefish = 350;
+        if(!hasWinner){
+          hasWinner = true;
+          elemBluefishWin.style.display = 'unset';
+        }
+      }
+      elemBluefish.style.left = posBluefish + 'px';
+    }
+
+    if(posTurtle < 350)
+    {
+      posTurtle += Math.round(Math.random()*10);
+      if(posTurtle >= 350)
+      {
+        posTurtle = 350;
+        if(!hasWinner){
+          hasWinner = true;
+          elemTurtleWin.style.display = 'unset';
+        }
+      }
+      elemTurtle.style.left = posTurtle + 'px';
+    }
+  }
+}
+<div id="traffic-light">
+  <div id="stopLight" class="bulb"></div>
+  <div id="yeildLight" class="bulb"></div>
+  <div id="goLight" class="bulb"></div>
+</div>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  #bluefish {
+    position: absolute;
+    top: 31pc;
+    width: 17pc;
+    left: -.5pc;
+  }
+
+  #turtle {
+    position: absolute;
+    width: 15pc;
+    top: 20pc;
+  }
+  
+  #bluefishwin {
+    position: absolute;
+    right: 1pc;
+    top: 31pc;
+    display: none;
+  }
+  
+  #turtlewin {
+    position: absolute;
+    right: 1pc;
+    top: 20pc;
+    display: none;
+  }
+
+  body {
+    background-image: url("http://www.hpud.org/wp-content/uploads/2015/08/WaterBackground2.jpg")
+  }
+
+  .finishline {
+    position: absolute;
+    right: -12pc;
+    top: 18pc;
+  }
+
+  #traffic-light {
+    height: 10pc;
+    width: 4pc;
+    background-color: #333;
+    border-radius: 20pc;
+    position: absolute;
+  }
+
+  .bulb {
+    height: 2pc;
+    width: 2pc;
+    background-color: #111;
+    border-radius: 50%;
+    margin: 15px auto;
+    transition: background 500ms;
+  }
+
+  /*#container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+  }
+
+  #animate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: red;
+  }*/
+</style>
+
+<img id="bluefish" src="http://clipartist.net/openclipart.org/2013/July/Blue_Fish_Goldfish.png">
+<img id="turtle" src="http://www.clipartkid.com/images/386/turtle-free-stock-photo-illustration-of-a-green-sea-turtle-uPgZrm-clipart.png">
+<img src="https://t1.rbxcdn.com/877010da8ce131dfcb3fa6a9b07fea89" class="finishline">
+
+<img id="bluefishwin" src="http://a.dryicons.com/images/icon_sets/coquette_part_3_icons_set/png/128x128/prize_winner.png">
+<img id="turtlewin" src="http://a.dryicons.com/images/icon_sets/coquette_part_3_icons_set/png/128x128/prize_winner.png">
+
+<p>
+  <button onclick="myMove()">Click Me</button>
+</p>
+
+<div id="container">
+  <div id="animate"></div>
+</div>
