@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Race</title>
+  <meta name="description" content="HTML5 Template">
+  </head>
+<style>
+
+body{
+    background-image:url('background.jpg');
+    background-repeat:repeat;
+    background-position:center top;
+}
+
+</style>
+<script>
+
+var randleng;
+
+
+function resetRace(){
+window.location.reload();
+}
+
+    var pos1 = 0;
+    var pos2 = 0;
+
+function startRace() {
+document.getElementById("redLight").style.display = "none" ;
+document.getElementById("greenLight").style.display = "inline" ;
+var myVar1 = setInterval(frame, 5);
+function frame(){
+
+    
+    var ranNum = Math.floor(Math.random()*2);
+    randleng = Math.round(Math.random()*2)+1;
+
+  if(ranNum == 0){
+
+    var leng1 = pos1 + randleng;
+    pos1+=randleng;
+    document.getElementById("Car1").style.left = leng1 + "px";
+
+    } 
+
+    else if (ranNum == 1){
+
+    var leng2 = pos2 + randleng;
+    pos2+=randleng;
+    document.getElementById("Car2").style.left = leng2 + "px";
+
+  }
+  function stopRace(){
+  document.getElementById("pause").style.display = "inline" ;
+  clearInterval(myVar1);
+  }
+
+if (pos1 >= 1500)
+  {
+    stopRace();
+	document.getElementById("win1").style.display = "inline" ;
+    //alert("Car1 is the winner!");
+  }
+  else if (pos2 >= 1500)
+  {
+   stopRace();
+   document.getElementById("win2").style.display = "inline" ;
+   //alert("Car2 is the winner!");  
+  }
+
+}
+ }
+
+  
+
+</script>
+<title>Race!</title>
+
+
+<body>
+
+<img style="display:none; width:300px; position:absolute; right:45%; top:20%; height:300px; cursor:pointer;" src="car-1-win.png" id="win1" onclick="resetRace()"/>
+<img style="display:none; width:300px; position:absolute; right:45%; top:20%; height:300px; cursor:pointer;" src="car-2-win.png" id="win2" onclick="resetRace()"/>
+<img style="width:150px; height:inherit; position:absolute; top:400px;" src="car-1.png" id="Car1"/>
+<img style="width:150px; height:inherit; position:absolute; top:600px;" src="car-2.png" id="Car2"/>
+<img style="width:100px; height:inherit; position:absolute; right:0px; cursor:pointer;" src="red.jpg" id="redLight" onclick="startRace()"/>
+<img style="display:none; width:100px; height:inherit; cursor:pointer; position:absolute; right:0px;" src="Green.jpg" id="greenLight" onclick="stopRace()"/>
+<img style="display:none; width:100px; height:inherit; cursor:pointer; position:absolute; right:0px;" src="Yellow.jpg" id="pause" onclick="startRace()"/>
+</body>
+
+</html>
+
+
